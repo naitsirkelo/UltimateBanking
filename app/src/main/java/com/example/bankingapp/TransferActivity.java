@@ -30,6 +30,8 @@ public class TransferActivity extends AppCompatActivity {
     private static double balance;
     private static String receiver;
     String[] friends;
+    int language = 0;
+    TextView bEURText, reciText, amouText;
 
 
     @Override
@@ -43,7 +45,9 @@ public class TransferActivity extends AppCompatActivity {
         // Update balance
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+
             friends = extras.getStringArray("friendsList");
+            language = extras.getInt("language");
         }
 
 
@@ -60,8 +64,7 @@ public class TransferActivity extends AppCompatActivity {
 
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
             }
             @Override
@@ -160,12 +163,13 @@ public class TransferActivity extends AppCompatActivity {
 
 
         // Defining button used to return to home page.
-        final Button backButton = (Button) findViewById(R.id.buttonToHome);
+        final Button backButton = findViewById(R.id.buttonToHome);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent toMain = new Intent(TransferActivity.this, MainActivity.class);
                 toMain.putExtra("newBalance", balance);
+                toMain.putExtra("language", language);
 
                 finish();
                 startActivity(toMain);
@@ -185,6 +189,31 @@ public class TransferActivity extends AppCompatActivity {
         // Update text field with correct balance.
         final TextView lbl_balance = (TextView) findViewById(R.id.balanceTextView);
         lbl_balance.setText(String.format(Locale.getDefault(), "%.2f", balance));
+
+
+        bEURText = findViewById(R.id.bEURTextView);
+        reciText = findViewById(R.id.textReci);
+        amouText = findViewById(R.id.textAmount);
+        switch (language) {
+            case 0:
+                bEURText.setText("Balance [EUR]");
+                reciText.setText("Recipient");
+                amouText.setText("Amount");
+                btn_pay.setText("Pay");
+                backButton.setText("Home");
+                break;
+            case 1:
+                bEURText.setText("Balanse [EUR]");
+                reciText.setText("Mottaker");
+                amouText.setText("Sum");
+                btn_pay.setText("Betal");
+                backButton.setText("Hjem");
+                break;
+
+            default:
+                break;
+        }
+
     }
 
 

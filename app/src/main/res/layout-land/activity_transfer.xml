@@ -7,7 +7,7 @@
     tools:context=".TransferActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/bEURTextView"
         android:layout_width="211dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.103" />
 
     <TextView
-        android:id="@+id/balanceTextView"
+        android:id="@+id/bEURTextView"
         android:layout_width="214dp"
         android:layout_height="86dp"
         android:layout_marginStart="8dp"

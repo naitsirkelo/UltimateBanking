@@ -7,7 +7,7 @@
     tools:context=".TransferActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/bEURTextView"
         android:layout_width="211dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -22,10 +22,12 @@
         android:textSize="28sp"
         android:textStyle="bold"
         android:typeface="serif"
-        app:layout_constraintBottom_toTopOf="@+id/textReci"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/balanceTextView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.347" />
 
     <TextView
         android:id="@+id/balanceTextView"
@@ -48,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.174" />
+        app:layout_constraintVertical_bias="0.155" />
 
     <TextView
         android:id="@+id/textReci"
@@ -109,7 +111,7 @@
         app:layout_constraintVertical_bias="0.532" />
 
     <TextView
-        android:id="@+id/textViewAmount"
+        android:id="@+id/textAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -167,7 +169,7 @@
         app:layout_constraintBottom_toTopOf="@+id/spinner1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/bEURTextView" />
 
     <Button
         android:id="@+id/buttonPay"

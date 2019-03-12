@@ -24,7 +24,7 @@ Marking/testing/scoring of the implementation is based on the form specified bel
 
 - [x] (5pts) The TransferActivity has all required UI, the balance amount handling is working correctly with the appropriate lbl_amount_check error messages, and the btn_pay is enabled/disabled when appropriate. Pressing the btn_pay creates the new transaction, visible in TransactionsActivity, and updates the user balance accordingly.
 
-[x] (1pt) The app never crashes. In particular, changing from landscape to portrait and vice-versa does not crash the app.
+- [x] (1pt) The app never crashes. In particular, changing from landscape to portrait and vice-versa does not crash the app.
 
 
 Bonus tasks
@@ -35,6 +35,10 @@ Bonus tasks
 
 - [x] (1pt) The Recipient list for the drop-down is done programmatically such that the list source of names is provided as a string array from MainActivity, eg. list = String[]{"Alice", "Bob", "Charlie", "Dawn", "Elvis", "Frode"}; This requires to dynamically update the TransferActivity UI based on the data passed to it from MainActivity.
 
-- [ ] (1pt) An extra bonus point for something outside of scope.
+- [x] (1pt) An extra bonus point for something outside of scope.
 
 Total: 20
+
+### Bonus
+
+User can change the language of the app between English and Norwegian in the settings activity.

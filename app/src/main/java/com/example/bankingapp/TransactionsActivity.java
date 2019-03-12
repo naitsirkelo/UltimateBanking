@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class TransactionsActivity extends AppCompatActivity {
 
     private static double newB; // Temporarily store balance before returning it to main.
     static int spaces = 15;     // For formatting output
+    TextView transText, reciText, amouText, balaText, timeText;
+    int language = 0;
 
 
     @Override
@@ -42,6 +45,8 @@ public class TransactionsActivity extends AppCompatActivity {
         // Check if there is a bundle from Main
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+
+            language = extras.getInt("language");
 
             // Get info about first transfer to the account.
             if (extras.getString("t2") != null) {
@@ -101,7 +106,18 @@ public class TransactionsActivity extends AppCompatActivity {
                                            int position, long arg3) {
 
                 String t = adapter.getItem(position);
-                String out = "Recipient       Amount\n" + t.substring(13, (t.length() - 10));
+
+                String out = "";
+                switch (language) {
+                    case 0:
+                        out = "Recipient       Amount\n" + t.substring(13, (t.length() - 10));
+                        break;
+                    case 1:
+                        out = "Mottaker          Sum\n" + t.substring(13, (t.length() - 10));
+                        break;
+                    default:
+                        break;
+                }
 
                 Toast.makeText(getApplicationContext(), out, Toast.LENGTH_LONG).show();
                 return true;
@@ -130,6 +146,34 @@ public class TransactionsActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
+        transText = findViewById(R.id.textTrans);
+        timeText = findViewById(R.id.textTime);
+        reciText = findViewById(R.id.textReci);
+        balaText = findViewById(R.id.textBala);
+        amouText = findViewById(R.id.textAmou);
+        switch (language) {
+            case 0:
+                transText.setText("Transactions");
+                reciText.setText("Recipient");
+                amouText.setText("Amount");
+                timeText.setText("Time");
+                balaText.setText("Balance");
+                backButton.setText("Home");
+                break;
+            case 1:
+                transText.setText("Transaksjoner");
+                reciText.setText("Mottaker");
+                amouText.setText("Sum");
+                timeText.setText("Tid");
+                balaText.setText("Balanse");
+                backButton.setText("Hjem");
+                break;
+
+            default:
+                break;
+        }
 
     }
 
