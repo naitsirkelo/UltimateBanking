@@ -26,12 +26,12 @@ import java.util.Locale;
 public class TransferActivity extends AppCompatActivity {
 
     // Declare class variables
-    private static double input;
+    private static double input = 0;
     private static double balance;
     private static String receiver;
     String[] friends;
     int language = 0;
-    TextView bEURText, reciText, amouText;
+    TextView bEURText, reciText, amouText, lbl_amount_check;
 
 
     @Override
@@ -39,21 +39,19 @@ public class TransferActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transfer);
 
-        // Create dropdown menu (spinner).
-        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
 
         // Update balance
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
+            balance = extras.getDouble("myBalance");
             friends = extras.getStringArray("friendsList");
             language = extras.getInt("language");
         }
 
 
-        input = 0;
-        balance = getIntent().getExtras().getDouble("myBalance");
-
+        // Create dropdown menu (spinner).
+        Spinner spinner = findViewById(R.id.spinner1);
 
         // Define spinner settings and apply 'friends' array.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(TransferActivity.this,
@@ -68,14 +66,12 @@ public class TransferActivity extends AppCompatActivity {
                 Log.v("item", (String) parent.getItemAtPosition(position));
             }
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
 
         // Defining label for check of amount.
-        TextView lbl_amount_check = findViewById(R.id.amountError);
+        lbl_amount_check = findViewById(R.id.amountError);
 
         // Defining area that user inputs number.
         EditText txt_amount = findViewById(R.id.inputAmount);
@@ -84,6 +80,7 @@ public class TransferActivity extends AppCompatActivity {
         final Button btn_pay = findViewById(R.id.buttonPay);
         // Initially set button to not be enabled.
         btn_pay.setEnabled(false);
+
 
         // Add check to see if a number is correctly inputted.
         txt_amount.addTextChangedListener(new TextWatcher() {
@@ -122,10 +119,10 @@ public class TransferActivity extends AppCompatActivity {
             }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {}
 
         });
 
@@ -156,7 +153,18 @@ public class TransferActivity extends AppCompatActivity {
         btn_pay.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(getApplicationContext(), "Click once to complete transfer.", Toast.LENGTH_LONG).show();
+                switch (language) {
+                    case 0:
+                        Toast.makeText(getApplicationContext(), "Click once to complete transfer.", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Toast.makeText(getApplicationContext(), "Trykk for å bekrefte overføring.", Toast.LENGTH_LONG).show();
+                        break;
+
+                    default:
+                        break;
+                }
+
                 return true;
             }
         });
@@ -180,7 +188,17 @@ public class TransferActivity extends AppCompatActivity {
         backButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(getApplicationContext(), "Return to Home page", Toast.LENGTH_LONG).show();
+                switch (language) {
+                    case 0:
+                        Toast.makeText(getApplicationContext(), "Return to Home page", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Toast.makeText(getApplicationContext(), "Returner til hjemmesiden.", Toast.LENGTH_LONG).show();
+                        break;
+
+                    default:
+                        break;
+                }
                 return true;
             }
         });

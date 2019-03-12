@@ -52,7 +52,17 @@ public class MainActivity extends AppCompatActivity {
         transferButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(getApplicationContext(), "Transfer money to a friend.", Toast.LENGTH_LONG).show();
+                switch (language) {
+                    case 0:
+                        Toast.makeText(getApplicationContext(), "Transfer money to a friend.", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Toast.makeText(getApplicationContext(), "Send penger til en venn.", Toast.LENGTH_LONG).show();
+                        break;
+
+                    default:
+                        break;
+                }
                 return true;
             }
         });
@@ -90,7 +100,17 @@ public class MainActivity extends AppCompatActivity {
         transactionButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(getApplicationContext(), "View all transactions.", Toast.LENGTH_LONG).show();
+                switch (language) {
+                    case 0:
+                        Toast.makeText(getApplicationContext(), "View all transactions.", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Toast.makeText(getApplicationContext(), "Se alle transaksjoner.", Toast.LENGTH_LONG).show();
+                        break;
+
+                    default:
+                        break;
+                }
                 return true;
             }
         });
@@ -110,7 +130,17 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(getApplicationContext(), "Change application language.", Toast.LENGTH_LONG).show();
+                switch (language) {
+                    case 0:
+                        Toast.makeText(getApplicationContext(), "Change application language.", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Toast.makeText(getApplicationContext(), "Endre applikasjonens språk.", Toast.LENGTH_LONG).show();
+                        break;
+
+                    default:
+                        break;
+                }
                 return true;
             }
         });
@@ -119,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
         // Update text field with correct balance.
         lbl_balance = findViewById(R.id.balanceTextView);
         lbl_balance.setText(String.format(Locale.getDefault(), "%.2f", balance));
-
 
     }
 
@@ -142,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
                         b = data.getStringExtra("b");
 
                         lbl_balance.setText(String.format(Locale.getDefault(), "%.2f", balance));
-
                     }
                 }
             } else if (requestCode == REQUEST_LANGUAGE) {

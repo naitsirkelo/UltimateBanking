@@ -142,7 +142,17 @@ public class TransactionsActivity extends AppCompatActivity {
         backButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(getApplicationContext(), "Return to Home page", Toast.LENGTH_LONG).show();
+                switch (language) {
+                    case 0:
+                        Toast.makeText(getApplicationContext(), "Return to Home page.", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Toast.makeText(getApplicationContext(), "Returner til hjemmesiden.", Toast.LENGTH_LONG).show();
+                        break;
+
+                    default:
+                        break;
+                }
                 return true;
             }
         });
